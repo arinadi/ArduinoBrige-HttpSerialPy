@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "D:\IoT\Brige\HttpSerialPy\hsp.bat", 0, True
