@@ -10,7 +10,7 @@ from markupsafe import escape
 from win10toast import ToastNotifier
 
 
-arduino = serial.Serial(port='COM5', baudrate=115200, timeout=.1)
+arduino = serial.Serial(port='COM3', baudrate=115200, timeout=.1)
 toast = ToastNotifier()
 api = Flask(__name__)
 
@@ -30,9 +30,16 @@ def hello():
 @api.route("/light/<status>")
 def light(status):
     status = escape(status)
-    write_read(status)
+    result = write_read(status)
     
-    return f"Hello, Lampu {escape(status)}!"
+    return f"Hello, Lampu {escape(result)}!"
+
+@api.route("/get-distance/<unit>")
+def get_distance(unit):
+    unit = escape(unit)
+    result = write_read(unit)
+    
+    return f"{escape(result)}"
 
 toast.show_toast("Arduino HTTPSerialPy", "The program has been started successfully", duration = 1, threaded=True)
 
