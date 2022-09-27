@@ -32,14 +32,14 @@ def light(status):
     status = escape(status)
     result = write_read(status)
     
-    return f"Hello, Lampu {escape(result)}!"
+    return f"Hello, Lampu {result.decode('utf-8')}!"
 
 @api.route("/get-distance/<unit>")
 def get_distance(unit):
     unit = escape(unit)
     result = write_read(unit)
     
-    return f"{escape(result)}"
+    return f"{result.decode('utf-8')}"
 
 toast.show_toast("Arduino HTTPSerialPy", "The program has been started successfully", duration = 1, threaded=True)
 
